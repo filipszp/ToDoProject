@@ -1,12 +1,8 @@
-﻿using Quartz;
-using Quartz.Impl;
-using Quartz.Logging;
-using System;
+﻿using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TodoApplication.LoginForms;
-using ToDoApplicationLib.Sheduler;
 
 namespace TodoApplication
 {

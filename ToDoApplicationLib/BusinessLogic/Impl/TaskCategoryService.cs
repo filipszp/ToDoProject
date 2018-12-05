@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TodoApplicationLib.Utils;
 using ToDoApplicationLib.EntityModel;
 
 namespace ToDoApplicationLib.BusinessLogic
@@ -23,12 +22,26 @@ namespace ToDoApplicationLib.BusinessLogic
 
         public TaskCategory getCategoryByName(String categoryName)
         {
-            return base.findByNameField("CategoryName", -1,categoryName).FirstOrDefault<TaskCategory>();
+            return base.findByNameField("CategoryName", -1, categoryName).FirstOrDefault<TaskCategory>();
         }
 
-        public int deleteTaskCategory(TaskCategory user)
+        public int deleteTaskCategory(TaskCategory taskCategory)
         {
-            throw new NotImplementedException();
+            var refTasks = new List<Task>();
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                refTasks = (List<Task>)session.Query<Task>()
+                   .Where(t => t.TaskCategory.Id == taskCategory.Id)
+                   .ToList();
+            }
+            if (refTasks.Count != 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return base.deleteEntity(taskCategory);
+            }
         }
 
         public TaskCategory updateTaskCategory(TaskCategory taskCategory)

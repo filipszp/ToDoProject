@@ -15,7 +15,7 @@ namespace ToDoApplicationLib.BusinessLogic
             using (var session = NHibernateHelper.OpenSession())
             {
                 ICollection<T> list = new List<T>();
-                if (sortField.Equals(""))
+                if (sortField.Equals(String.Empty))
                 {
                     list = session.Query<T>().ToList<T>();
                 }
@@ -52,7 +52,7 @@ namespace ToDoApplicationLib.BusinessLogic
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Update(entity);
+                    session.SaveOrUpdate(entity);
                     transaction.Commit();
 
                     persistEntity = (T)session.CreateCriteria<T>()
@@ -64,9 +64,16 @@ namespace ToDoApplicationLib.BusinessLogic
 
         public int deleteEntity(T entity)
         {
-            throw new NotImplementedException();
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Delete(entity);
+                    transaction.Commit();
+                    return 1;
+                }
+            }
         }
-
         public ICollection<T> findByNameField(string field, int userId = -1, string stringValue = "", int intValue = -1)
         {
             List<T> persistEntity = new List<T>();

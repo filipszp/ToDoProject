@@ -8,7 +8,6 @@ namespace ToDoApplicationLib.BusinessLogic
     {
         List<String> getAllLogin();
         User createUser(User user);
-        //int deleteUser(User user);
         User login(User user);
         User lastLoginTimeUpdate(User user);
 

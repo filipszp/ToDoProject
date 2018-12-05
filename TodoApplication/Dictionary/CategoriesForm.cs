@@ -21,20 +21,26 @@ namespace TodoApplication.Config
         private void Categories_Load(object sender, EventArgs e)
         {
             dataGridView1.AutoGenerateColumns = false;
+            loadDataGrid();
+        }
+
+        private void loadDataGrid()
+        {
             taskCategories = (List<TaskCategory>)taskCategoryService.getAll("CategoryName", System.Data.SqlClient.SortOrder.Ascending);
             dataGridView1.DataSource = taskCategories;
+            if (taskCategories.Count > 0)
+                currentTaskCategory = taskCategories[0];
+            else
+                currentTaskCategory = new TaskCategory();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            taskCategoryService.createTaskCategory(mapCurrentTaskCategoryWithControls());
-
             if (validateControls())
             {
                 if (currentTaskCategory.isNew)
                 {
-                    loadCurrentTaskCategoryFromControls();
-                    currentTaskCategory = taskCategoryService.saveNewEntity(currentTaskCategory);
+                    currentTaskCategory = taskCategoryService.createTaskCategory(mapCurrentTaskCategoryWithControls());
                     currentTaskCategory.isNew = false;
                     txtDesc.Enabled = txtName.Enabled = false;
                 }
@@ -42,15 +48,15 @@ namespace TodoApplication.Config
                 {
                     currentTaskCategory = taskCategoryService.updateTaskCategory(mapCurrentTaskCategoryWithControls());
                 }
-                taskCategories = (List<TaskCategory>)taskCategoryService.getAll("CategoryName", System.Data.SqlClient.SortOrder.Ascending);
-                dataGridView1.DataSource = taskCategories;
+                loadDataGrid();
                 loadCurrentTaskCategoryToControls();
                 //dataGridView1.CurrentCell = dataGridView1.Rows[currentTask.Id].Cells[0];
                 txtDesc.Enabled = txtName.Enabled = false;
+                btnSave.Enabled = false;
+                btnEAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = true;
             }
 
-            btnSave.Enabled = false;
-            btnEAdd.Enabled = btnEdit.Enabled = true;
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -61,7 +67,7 @@ namespace TodoApplication.Config
         private void btnAdd_Click(object sender, EventArgs e)
         {
             currentTaskCategory.isNew = true;
-            btnEdit.Enabled = false;
+            btnEdit.Enabled = btnDelete.Enabled = btnEAdd.Enabled = false;
             btnSave.Enabled = true;
             txtName.Enabled = txtDesc.Enabled = true;
             txtName.Text = txtDesc.Text = "";
@@ -80,7 +86,7 @@ namespace TodoApplication.Config
 
         private void loadCurrentTaskCategoryToControls()
         {
-            if (currentTaskCategory.Id > 0)
+            if (currentTaskCategory != null && currentTaskCategory.Id > 0)
             {
                 txtDesc.Text = currentTaskCategory.Description;
                 txtName.Text = currentTaskCategory.CategoryName;
@@ -95,7 +101,7 @@ namespace TodoApplication.Config
         private void btnEdit_Click(object sender, EventArgs e)
         {
             currentTaskCategory.isNew = false;
-            btnEdit.Enabled = btnEAdd.Enabled = false;
+            btnEdit.Enabled = btnEAdd.Enabled = btnDelete.Enabled = false;
             btnSave.Enabled = true;
             txtName.Enabled = txtDesc.Enabled = true;
             txtName.Focus();
@@ -121,7 +127,11 @@ namespace TodoApplication.Config
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            taskCategoryService.deleteTaskCategory(currentTaskCategory);
+            if (taskCategoryService.deleteTaskCategory(currentTaskCategory) == -1)
+                MessageBox.Show("Nie można usunąć grupy zadań ponieważ istnieją przypisane zadania", "Błąd usuwania", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            else
+                MessageBox.Show("Usunięto grupę zadań", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            loadDataGrid();
         }
     }
 }

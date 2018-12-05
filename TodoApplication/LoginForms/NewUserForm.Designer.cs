@@ -142,7 +142,7 @@
             this.Name = "NewUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nowy użytkownik ToDo";
-            this.Load += new System.EventHandler(this.NewUserForm_Load_1);
+            this.Load += new System.EventHandler(this.NewUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

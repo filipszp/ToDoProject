@@ -11,14 +11,14 @@ namespace ToDoApplicationLib.EntityModel
     {
         public TaskCategory()
         {
-            this.Tasks = new HashSet<Task>();
+            //this.Tasks = new HashSet<Task>();
         }
 
         public virtual int Id { get; set; }
         public virtual string CategoryName { get; set; }
         public virtual string Description { get; set; }
         public virtual bool isNew { get; set; }
-        public virtual ICollection<Task> Tasks { get; set; }
+        //public virtual ICollection<Task> Tasks { get; set; }
 
         public class TaskCategoryMap : ClassMap<TaskCategory>
         {

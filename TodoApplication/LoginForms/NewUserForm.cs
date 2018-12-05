@@ -76,12 +76,7 @@ namespace TodoApplication.LoginForms
 
         private void NewUserForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void NewUserForm_Load_1(object sender, EventArgs e)
-        {
-
+            tbLogin.Focus();
         }
     }
 }

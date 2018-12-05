@@ -1,4 +1,6 @@
-﻿namespace TodoApplication
+﻿using System.Windows.Forms;
+
+namespace TodoApplication
 {
     partial class MainForm
     {
@@ -29,32 +31,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusUserLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLastLogin = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Completed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TaskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBoxAlert = new System.Windows.Forms.CheckBox();
-            this.dtPickerAlert = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboTaskCategory = new System.Windows.Forms.ComboBox();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNewTask = new System.Windows.Forms.Button();
             this.btnEditTask = new System.Windows.Forms.Button();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.dtPickerTaskDate = new System.Windows.Forms.DateTimePicker();
+            this.dtPickerTaskDateTime = new System.Windows.Forms.DateTimePicker();
             this.checkBoxCompleted = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTaskName = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.zadaniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,20 +69,20 @@
             this.przeglądajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipCategory = new System.Windows.Forms.ToolTip(this.components);
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.filtrName = new System.Windows.Forms.TextBox();
             this.checkBoxCompletedFilter = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.filtrCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBoxNotCompleted = new System.Windows.Forms.CheckBox();
             this.validatorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Completed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.TaskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaskCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaskDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancelEdit = new System.Windows.Forms.Button();
             this.lblRecordCount = new System.Windows.Forms.Label();
+            this.filterDateFrom = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.filterDateTo = new System.Windows.Forms.DateTimePicker();
+            this.btnClearFiltr = new System.Windows.Forms.Button();
+            this.dtPickerTaskDate = new System.Windows.Forms.DateTimePicker();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -116,101 +122,138 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.PaleTurquoise;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Menu;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Menu;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Completed,
             this.TaskName,
-            this.TaskCategory,
             this.TaskDate,
             this.CreateDate});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 301);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 347);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1195, 280);
+            this.dataGridView1.Size = new System.Drawing.Size(1195, 213);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 85;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 85;
+            // 
+            // Completed
+            // 
+            this.Completed.DataPropertyName = "Completed";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.NullValue = false;
+            this.Completed.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Completed.FalseValue = "0";
+            this.Completed.HeaderText = "Realizacja";
+            this.Completed.MinimumWidth = 85;
+            this.Completed.Name = "Completed";
+            this.Completed.ReadOnly = true;
+            this.Completed.TrueValue = "1";
+            this.Completed.Width = 85;
+            // 
+            // TaskName
+            // 
+            this.TaskName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TaskName.DataPropertyName = "TaskName";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            this.TaskName.DefaultCellStyle = dataGridViewCellStyle9;
+            this.TaskName.HeaderText = "Nazwa zadania";
+            this.TaskName.Name = "TaskName";
+            this.TaskName.ReadOnly = true;
+            // 
+            // TaskDate
+            // 
+            this.TaskDate.DataPropertyName = "TaskDate";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TaskDate.DefaultCellStyle = dataGridViewCellStyle10;
+            this.TaskDate.HeaderText = "Data realizacji zadania";
+            this.TaskDate.MinimumWidth = 200;
+            this.TaskDate.Name = "TaskDate";
+            this.TaskDate.ReadOnly = true;
+            this.TaskDate.Width = 200;
+            // 
+            // CreateDate
+            // 
+            this.CreateDate.DataPropertyName = "CreateDate";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CreateDate.DefaultCellStyle = dataGridViewCellStyle11;
+            this.CreateDate.HeaderText = "Data utworzenia";
+            this.CreateDate.MinimumWidth = 200;
+            this.CreateDate.Name = "CreateDate";
+            this.CreateDate.ReadOnly = true;
+            this.CreateDate.Width = 200;
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.groupBox1.Controls.Add(this.dtPickerTaskDate);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.checkBoxAlert);
-            this.groupBox1.Controls.Add(this.dtPickerAlert);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.btnCancelEdit);
             this.groupBox1.Controls.Add(this.comboTaskCategory);
+            this.groupBox1.Controls.Add(this.btnNewTask);
             this.groupBox1.Controls.Add(this.btnEditTask);
             this.groupBox1.Controls.Add(this.txtDesc);
             this.groupBox1.Controls.Add(this.txtUserName);
-            this.groupBox1.Controls.Add(this.dtPickerTaskDate);
+            this.groupBox1.Controls.Add(this.dtPickerTaskDateTime);
             this.groupBox1.Controls.Add(this.checkBoxCompleted);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtTaskName);
+            this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Location = new System.Drawing.Point(0, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1218, 222);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wybrane zadanie";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(790, 29);
+            this.label2.Location = new System.Drawing.Point(722, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "Opis zadania";
-            // 
-            // checkBoxAlert
-            // 
-            this.checkBoxAlert.AutoSize = true;
-            this.checkBoxAlert.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAlert.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxAlert.Location = new System.Drawing.Point(322, 112);
-            this.checkBoxAlert.Name = "checkBoxAlert";
-            this.checkBoxAlert.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxAlert.Size = new System.Drawing.Size(141, 20);
-            this.checkBoxAlert.TabIndex = 12;
-            this.checkBoxAlert.Text = "Przypomnienie od";
-            this.checkBoxAlert.UseVisualStyleBackColor = true;
-            // 
-            // dtPickerAlert
-            // 
-            this.dtPickerAlert.CustomFormat = "MMMMdd, yyyy  |  hh:mm";
-            this.dtPickerAlert.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtPickerAlert.Location = new System.Drawing.Point(322, 132);
-            this.dtPickerAlert.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.dtPickerAlert.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtPickerAlert.Name = "dtPickerAlert";
-            this.dtPickerAlert.Size = new System.Drawing.Size(307, 23);
-            this.dtPickerAlert.TabIndex = 11;
             // 
             // label3
             // 
@@ -226,7 +269,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(574, 52);
+            this.label4.Location = new System.Drawing.Point(529, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 16);
             this.label4.TabIndex = 10;
@@ -236,7 +279,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(319, 52);
+            this.label6.Location = new System.Drawing.Point(302, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 16);
             this.label6.TabIndex = 10;
@@ -248,32 +291,29 @@
             this.comboTaskCategory.Enabled = false;
             this.comboTaskCategory.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboTaskCategory.FormattingEnabled = true;
-            this.comboTaskCategory.Location = new System.Drawing.Point(320, 68);
+            this.comboTaskCategory.Location = new System.Drawing.Point(303, 68);
             this.comboTaskCategory.Name = "comboTaskCategory";
             this.comboTaskCategory.Size = new System.Drawing.Size(220, 24);
             this.comboTaskCategory.TabIndex = 1;
             this.comboTaskCategory.MouseEnter += new System.EventHandler(this.comboTaskCategory_MouseEnter);
             // 
-            // btnSave
+            // btnNewTask
             // 
-            this.btnSave.Enabled = false;
-            this.btnSave.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSave.ForeColor = System.Drawing.Color.Red;
-            this.btnSave.Location = new System.Drawing.Point(12, 627);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(135, 30);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Zapisz";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnNewTask.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnNewTask.Location = new System.Drawing.Point(8, 178);
+            this.btnNewTask.Name = "btnNewTask";
+            this.btnNewTask.Size = new System.Drawing.Size(140, 35);
+            this.btnNewTask.TabIndex = 6;
+            this.btnNewTask.Text = "Nowe zadanie";
+            this.btnNewTask.UseVisualStyleBackColor = true;
+            this.btnNewTask.Click += new System.EventHandler(this.btnNewTask_Click);
             // 
             // btnEditTask
             // 
-            this.btnEditTask.Enabled = false;
             this.btnEditTask.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnEditTask.Location = new System.Drawing.Point(5, 183);
+            this.btnEditTask.Location = new System.Drawing.Point(150, 178);
             this.btnEditTask.Name = "btnEditTask";
-            this.btnEditTask.Size = new System.Drawing.Size(135, 30);
+            this.btnEditTask.Size = new System.Drawing.Size(140, 35);
             this.btnEditTask.TabIndex = 6;
             this.btnEditTask.Text = "Edytuj zadanie";
             this.btnEditTask.UseVisualStyleBackColor = true;
@@ -281,37 +321,40 @@
             // 
             // txtDesc
             // 
-            this.txtDesc.BackColor = System.Drawing.Color.DodgerBlue;
+            this.txtDesc.BackColor = System.Drawing.Color.LightBlue;
             this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDesc.ForeColor = System.Drawing.Color.Yellow;
-            this.txtDesc.Location = new System.Drawing.Point(793, 47);
+            this.txtDesc.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtDesc.ForeColor = System.Drawing.Color.Maroon;
+            this.txtDesc.Location = new System.Drawing.Point(725, 47);
             this.txtDesc.MaxLength = 2000;
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDesc.Size = new System.Drawing.Size(413, 166);
+            this.txtDesc.Size = new System.Drawing.Size(481, 166);
             this.txtDesc.TabIndex = 3;
             // 
             // txtUserName
             // 
-            this.txtUserName.Enabled = false;
             this.txtUserName.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtUserName.Location = new System.Drawing.Point(575, 68);
+            this.txtUserName.Location = new System.Drawing.Point(530, 68);
             this.txtUserName.Name = "txtUserName";
+            this.txtUserName.ReadOnly = true;
             this.txtUserName.Size = new System.Drawing.Size(187, 23);
             this.txtUserName.TabIndex = 9;
             // 
-            // dtPickerTaskDate
+            // dtPickerTaskDateTime
             // 
-            this.dtPickerTaskDate.CustomFormat = "MMMMdd, yyyy  |  hh:mm";
-            this.dtPickerTaskDate.Enabled = false;
-            this.dtPickerTaskDate.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtPickerTaskDate.Location = new System.Drawing.Point(6, 132);
-            this.dtPickerTaskDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.dtPickerTaskDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtPickerTaskDate.Name = "dtPickerTaskDate";
-            this.dtPickerTaskDate.Size = new System.Drawing.Size(285, 23);
-            this.dtPickerTaskDate.TabIndex = 2;
+            this.dtPickerTaskDateTime.CustomFormat = "MMMMdd, yyyy  |  hh:mm";
+            this.dtPickerTaskDateTime.Enabled = false;
+            this.dtPickerTaskDateTime.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dtPickerTaskDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtPickerTaskDateTime.Location = new System.Drawing.Point(303, 132);
+            this.dtPickerTaskDateTime.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtPickerTaskDateTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtPickerTaskDateTime.Name = "dtPickerTaskDateTime";
+            this.dtPickerTaskDateTime.ShowUpDown = true;
+            this.dtPickerTaskDateTime.Size = new System.Drawing.Size(92, 23);
+            this.dtPickerTaskDateTime.TabIndex = 2;
             // 
             // checkBoxCompleted
             // 
@@ -325,7 +368,6 @@
             this.checkBoxCompleted.TabIndex = 6;
             this.checkBoxCompleted.Text = "Zrealizowane";
             this.checkBoxCompleted.UseVisualStyleBackColor = true;
-            this.checkBoxCompleted.CheckedChanged += new System.EventHandler(this.checkBoxCompleted_CheckedChanged);
             // 
             // label1
             // 
@@ -341,18 +383,32 @@
             // 
             this.txtTaskName.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtTaskName.Location = new System.Drawing.Point(6, 68);
+            this.txtTaskName.MaxLength = 100;
             this.txtTaskName.Name = "txtTaskName";
             this.txtTaskName.Size = new System.Drawing.Size(291, 26);
             this.txtTaskName.TabIndex = 0;
             // 
+            // btnSave
+            // 
+            this.btnSave.Enabled = false;
+            this.btnSave.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSave.ForeColor = System.Drawing.Color.Red;
+            this.btnSave.Location = new System.Drawing.Point(303, 178);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(140, 35);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Zapisz";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // btnReload
             // 
             this.btnReload.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnReload.Location = new System.Drawing.Point(986, 266);
+            this.btnReload.Location = new System.Drawing.Point(1071, 269);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(135, 30);
             this.btnReload.TabIndex = 5;
-            this.btnReload.Text = "Odśwież dane";
+            this.btnReload.Text = "Wyszukaj";
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
@@ -412,19 +468,19 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(393, 252);
+            this.label5.Location = new System.Drawing.Point(147, 282);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(135, 16);
+            this.label5.Size = new System.Drawing.Size(181, 16);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Filtr nazwa zadania";
+            this.label5.Text = "Nazwa zadania (LIKE z %)";
             // 
-            // textBox1
+            // filtrName
             // 
-            this.textBox1.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(386, 267);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(272, 26);
-            this.textBox1.TabIndex = 9;
+            this.filtrName.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.filtrName.Location = new System.Drawing.Point(137, 296);
+            this.filtrName.Name = "filtrName";
+            this.filtrName.Size = new System.Drawing.Size(272, 26);
+            this.filtrName.TabIndex = 9;
             // 
             // checkBoxCompletedFilter
             // 
@@ -433,7 +489,7 @@
             this.checkBoxCompletedFilter.Checked = true;
             this.checkBoxCompletedFilter.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCompletedFilter.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxCompletedFilter.Location = new System.Drawing.Point(15, 267);
+            this.checkBoxCompletedFilter.Location = new System.Drawing.Point(15, 283);
             this.checkBoxCompletedFilter.Name = "checkBoxCompletedFilter";
             this.checkBoxCompletedFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBoxCompletedFilter.Size = new System.Drawing.Size(113, 20);
@@ -442,24 +498,24 @@
             this.checkBoxCompletedFilter.UseVisualStyleBackColor = true;
             this.checkBoxCompletedFilter.CheckedChanged += new System.EventHandler(this.checkBoxCompletedFilter_CheckedChanged);
             // 
-            // comboBox1
+            // filtrCategory
             // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(793, 268);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(176, 27);
-            this.comboBox1.TabIndex = 13;
+            this.filtrCategory.FormattingEnabled = true;
+            this.filtrCategory.Location = new System.Drawing.Point(454, 295);
+            this.filtrCategory.Name = "filtrCategory";
+            this.filtrCategory.Size = new System.Drawing.Size(205, 27);
+            this.filtrCategory.TabIndex = 13;
+            this.filtrCategory.SelectedIndexChanged += new System.EventHandler(this.filtrCategory_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(798, 253);
+            this.label7.Location = new System.Drawing.Point(459, 283);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 16);
+            this.label7.Size = new System.Drawing.Size(116, 16);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Filtr grupa zadań";
+            this.label7.Text = "Grupa zadań (=)";
             // 
             // checkBoxNotCompleted
             // 
@@ -468,7 +524,7 @@
             this.checkBoxNotCompleted.Checked = true;
             this.checkBoxNotCompleted.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxNotCompleted.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxNotCompleted.Location = new System.Drawing.Point(156, 268);
+            this.checkBoxNotCompleted.Location = new System.Drawing.Point(15, 305);
             this.checkBoxNotCompleted.Name = "checkBoxNotCompleted";
             this.checkBoxNotCompleted.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBoxNotCompleted.Size = new System.Drawing.Size(106, 20);
@@ -481,79 +537,13 @@
             // 
             this.validatorProvider.ContainerControl = this;
             // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 85;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 85;
-            // 
-            // Completed
-            // 
-            this.Completed.DataPropertyName = "Completed";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.NullValue = false;
-            this.Completed.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Completed.FalseValue = "0";
-            this.Completed.HeaderText = "Realizacja";
-            this.Completed.MinimumWidth = 85;
-            this.Completed.Name = "Completed";
-            this.Completed.ReadOnly = true;
-            this.Completed.TrueValue = "1";
-            this.Completed.Width = 85;
-            // 
-            // TaskName
-            // 
-            this.TaskName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TaskName.DataPropertyName = "TaskName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            this.TaskName.DefaultCellStyle = dataGridViewCellStyle3;
-            this.TaskName.HeaderText = "Nazwa zadania";
-            this.TaskName.Name = "TaskName";
-            this.TaskName.ReadOnly = true;
-            // 
-            // TaskCategory
-            // 
-            this.TaskCategory.HeaderText = "Grupa zadań";
-            this.TaskCategory.MinimumWidth = 150;
-            this.TaskCategory.Name = "TaskCategory";
-            this.TaskCategory.ReadOnly = true;
-            this.TaskCategory.Width = 150;
-            // 
-            // TaskDate
-            // 
-            this.TaskDate.DataPropertyName = "TaskDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.TaskDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TaskDate.HeaderText = "Data realizacji zadania";
-            this.TaskDate.MinimumWidth = 200;
-            this.TaskDate.Name = "TaskDate";
-            this.TaskDate.ReadOnly = true;
-            this.TaskDate.Width = 200;
-            // 
-            // CreateDate
-            // 
-            this.CreateDate.DataPropertyName = "CreateDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CreateDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.CreateDate.HeaderText = "Data utworzenia";
-            this.CreateDate.MinimumWidth = 200;
-            this.CreateDate.Name = "CreateDate";
-            this.CreateDate.ReadOnly = true;
-            this.CreateDate.Width = 200;
-            // 
             // btnCancelEdit
             // 
             this.btnCancelEdit.Enabled = false;
             this.btnCancelEdit.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnCancelEdit.Location = new System.Drawing.Point(153, 627);
+            this.btnCancelEdit.Location = new System.Drawing.Point(449, 178);
             this.btnCancelEdit.Name = "btnCancelEdit";
-            this.btnCancelEdit.Size = new System.Drawing.Size(135, 30);
+            this.btnCancelEdit.Size = new System.Drawing.Size(140, 35);
             this.btnCancelEdit.TabIndex = 14;
             this.btnCancelEdit.Text = "Anuluj edycję";
             this.btnCancelEdit.UseVisualStyleBackColor = true;
@@ -569,22 +559,92 @@
             this.lblRecordCount.Size = new System.Drawing.Size(0, 16);
             this.lblRecordCount.TabIndex = 17;
             // 
+            // filterDateFrom
+            // 
+            this.filterDateFrom.CustomFormat = "MMMMdd, yyyy  |  hh:mm";
+            this.filterDateFrom.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.filterDateFrom.Location = new System.Drawing.Point(725, 274);
+            this.filterDateFrom.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.filterDateFrom.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.filterDateFrom.Name = "filterDateFrom";
+            this.filterDateFrom.Size = new System.Drawing.Size(285, 23);
+            this.filterDateFrom.TabIndex = 19;
+            this.filterDateFrom.Value = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(722, 257);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(122, 16);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Data realizacji od";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(722, 301);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 16);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Data realizacji do";
+            // 
+            // filterDateTo
+            // 
+            this.filterDateTo.CustomFormat = "MMMMdd, yyyy  |  hh:mm";
+            this.filterDateTo.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.filterDateTo.Location = new System.Drawing.Point(725, 319);
+            this.filterDateTo.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.filterDateTo.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.filterDateTo.Name = "filterDateTo";
+            this.filterDateTo.Size = new System.Drawing.Size(285, 23);
+            this.filterDateTo.TabIndex = 21;
+            this.filterDateTo.Value = new System.DateTime(2019, 12, 31, 0, 0, 0, 0);
+            // 
+            // btnClearFiltr
+            // 
+            this.btnClearFiltr.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnClearFiltr.Location = new System.Drawing.Point(1071, 311);
+            this.btnClearFiltr.Name = "btnClearFiltr";
+            this.btnClearFiltr.Size = new System.Drawing.Size(135, 30);
+            this.btnClearFiltr.TabIndex = 5;
+            this.btnClearFiltr.Text = "Wyczyść filtry";
+            this.btnClearFiltr.UseVisualStyleBackColor = true;
+            this.btnClearFiltr.Click += new System.EventHandler(this.btnClearFiltr_Click);
+            // 
+            // dtPickerTaskDate
+            // 
+            this.dtPickerTaskDate.CustomFormat = "dd-MM-yyyy";
+            this.dtPickerTaskDate.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dtPickerTaskDate.Location = new System.Drawing.Point(6, 132);
+            this.dtPickerTaskDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtPickerTaskDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtPickerTaskDate.Name = "dtPickerTaskDate";
+            this.dtPickerTaskDate.ShowUpDown = true;
+            this.dtPickerTaskDate.Size = new System.Drawing.Size(291, 23);
+            this.dtPickerTaskDate.TabIndex = 14;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1218, 695);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.filterDateTo);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.filterDateFrom);
             this.Controls.Add(this.lblRecordCount);
-            this.Controls.Add(this.btnCancelEdit);
             this.Controls.Add(this.checkBoxNotCompleted);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.filtrCategory);
             this.Controls.Add(this.checkBoxCompletedFilter);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.filtrName);
+            this.Controls.Add(this.btnClearFiltr);
             this.Controls.Add(this.btnReload);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -614,11 +674,6 @@
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn taskNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusUserLbl;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLastLogin;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -626,7 +681,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTaskName;
         private System.Windows.Forms.CheckBox checkBoxCompleted;
-        private System.Windows.Forms.DateTimePicker dtPickerTaskDate;
+        private System.Windows.Forms.DateTimePicker dtPickerTaskDateTime;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.Button btnEditTask;
@@ -642,23 +697,27 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolTip toolTipCategory;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox filtrName;
         private System.Windows.Forms.CheckBox checkBoxCompletedFilter;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox filtrCategory;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dtPickerAlert;
-        private System.Windows.Forms.CheckBox checkBoxAlert;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxNotCompleted;
         private System.Windows.Forms.ErrorProvider validatorProvider;
+        private System.Windows.Forms.Button btnCancelEdit;
+        private System.Windows.Forms.Label lblRecordCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Completed;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaskCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreateDate;
-        private System.Windows.Forms.Button btnCancelEdit;
-        private System.Windows.Forms.Label lblRecordCount;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker filterDateTo;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker filterDateFrom;
+        private System.Windows.Forms.Button btnNewTask;
+        private System.Windows.Forms.Button btnClearFiltr;
+        private DateTimePicker dtPickerTaskDate;
     }
 }
 

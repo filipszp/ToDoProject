@@ -28,9 +28,10 @@ namespace ToDoApplicationLib.EntityModel
             _sessionFactory = Fluently.Configure()
                  .Database(FluentNHibernate.Cfg.Db.MsSqlCeConfiguration.Standard.ShowSql()
                  .ConnectionString(c => c.FromConnectionStringWithKey("DbConnectionString")))
-                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Task.TaskMap>().Conventions.Add(DefaultCascade.All()))
-                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User.UserMap>().Conventions.Add(DefaultCascade.All()))
-                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TaskCategory.TaskCategoryMap>().Conventions.Add(DefaultCascade.All()))
+                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Task.TaskMap>().Conventions.Add(DefaultCascade.SaveUpdate()))
+                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User.UserMap>().Conventions.Add(DefaultCascade.SaveUpdate()))
+                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TaskCategory.TaskCategoryMap>().Conventions.Add(DefaultCascade.None()))
+
                  .BuildSessionFactory();
 
 

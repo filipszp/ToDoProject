@@ -13,7 +13,7 @@ namespace ToDoApplicationLib.BusinessLogic
         List<TaskCategory> getAll();
         TaskCategory getCategoryByName(String categoryName);
         TaskCategory createTaskCategory(TaskCategory user);
-        int deleteTaskCategory(TaskCategory user);
+        int deleteTaskCategory(TaskCategory taskCategory);
         TaskCategory updateTaskCategory(TaskCategory taskCategory);
     }
 }

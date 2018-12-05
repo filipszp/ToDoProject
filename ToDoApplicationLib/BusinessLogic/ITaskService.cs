@@ -8,8 +8,10 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public interface ITaskService
     {
-        List<Task> getTasksByUserId(int userId);
-
-        Task updateTask(Task task);
+        List<Task> GetAll();
+        List<Task> GetTasksByUserId(int userId);
+        Task GetEagerTaskById(int taskId);
+        Task UpdateTask(Task task);
+        List<Task> SearchTasks(TaskSearchCriteria searchCriteria, int userId);
     }
 }
