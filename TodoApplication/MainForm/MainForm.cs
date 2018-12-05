@@ -84,7 +84,6 @@ namespace TodoApplication
                 = editable;
 
             comboTaskCategory.SelectedItem = currentTask.TaskCategory.CategoryName;
-
         }
 
 

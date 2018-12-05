@@ -25,7 +25,6 @@ namespace ToDoApplicationLib.EntityModel
         public virtual string Password { get; set; }
         public virtual DateTime? LastLoginDate { get; set; }
         public virtual bool isLogged { get; set; }
-
         public virtual IList<Task> Tasks { get; set; }
 
         public class UserMap : ClassMap<User>

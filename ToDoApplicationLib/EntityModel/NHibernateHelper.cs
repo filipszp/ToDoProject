@@ -30,7 +30,7 @@ namespace ToDoApplicationLib.EntityModel
                  .ConnectionString(c => c.FromConnectionStringWithKey("DbConnectionString")))
                  .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Task.TaskMap>().Conventions.Add(DefaultCascade.All()))
                  .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User.UserMap>().Conventions.Add(DefaultCascade.All()))
-                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TaskCategory.TaskCategoryMap>())
+                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TaskCategory.TaskCategoryMap>().Conventions.Add(DefaultCascade.All()))
                  .BuildSessionFactory();
 
 

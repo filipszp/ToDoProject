@@ -52,7 +52,7 @@ namespace ToDoApplicationLib.BusinessLogic
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(entity);
+                    session.Update(entity);
                     transaction.Commit();
 
                     persistEntity = (T)session.CreateCriteria<T>()

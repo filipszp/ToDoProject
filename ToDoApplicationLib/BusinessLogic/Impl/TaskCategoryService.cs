@@ -35,5 +35,10 @@ namespace ToDoApplicationLib.BusinessLogic
         {
             return base.saveEntity(taskCategory);
         }
+
+        public List<TaskCategory> getAll()
+        {
+            return (List<TaskCategory>)base.getAll();
+        }
     }
 }

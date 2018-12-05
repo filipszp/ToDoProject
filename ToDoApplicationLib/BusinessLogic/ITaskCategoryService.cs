@@ -10,6 +10,7 @@ namespace ToDoApplicationLib.BusinessLogic
     public interface ITaskCategoryService
     {
         List<String> getAllCategoryName();
+        List<TaskCategory> getAll();
         TaskCategory getCategoryByName(String categoryName);
         TaskCategory createTaskCategory(TaskCategory user);
         int deleteTaskCategory(TaskCategory user);

@@ -20,7 +20,6 @@ namespace ToDoApplicationLib.EntityModel
         public virtual TaskCategory TaskCategory { get; set; }
         public virtual User User { get; set; }
         public virtual bool isNew { get; set; }
-
         public class TaskMap : ClassMap<Task>
         {
             public TaskMap()
