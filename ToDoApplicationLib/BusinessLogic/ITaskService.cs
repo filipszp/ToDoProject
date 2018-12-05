@@ -12,6 +12,7 @@ namespace ToDoApplicationLib.BusinessLogic
         List<Task> GetTasksByUserId(int userId);
         Task GetEagerTaskById(int taskId);
         Task UpdateTask(Task task);
+        int DeleteTask(Task task);
         List<Task> SearchTasks(TaskSearchCriteria searchCriteria, int userId);
     }
 }

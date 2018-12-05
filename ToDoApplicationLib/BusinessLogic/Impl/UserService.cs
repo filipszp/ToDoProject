@@ -8,7 +8,7 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public class UserService : AbstractService<User>, IUserService
     {
-        public List<String> getAllLogin()
+        public List<String> GetAllLogin()
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -16,9 +16,9 @@ namespace ToDoApplicationLib.BusinessLogic
             }
         }
 
-        public User createUser(User user)
+        public User CreateUser(User user)
         {
-            return base.saveNewEntity(user);
+            return base.baseSaveNewEntity(user);
         }
 
         public int deleteUser(User user)
@@ -26,7 +26,7 @@ namespace ToDoApplicationLib.BusinessLogic
             throw new System.NotImplementedException();
         }
 
-        public User login(User user)
+        public User Login(User user)
         {
             var userFromDb = new User();
             using (var session = NHibernateHelper.OpenSession())
@@ -46,7 +46,7 @@ namespace ToDoApplicationLib.BusinessLogic
             return userFromDb;
         }
 
-        public User lastLoginTimeUpdate(User user)
+        public User LastLoginTimeUpdate(User user)
         {
             var userFromDb = new User();
             using (var session = NHibernateHelper.OpenSession())
@@ -54,7 +54,7 @@ namespace ToDoApplicationLib.BusinessLogic
                 userFromDb = session.Get<User>(user.Id);
                 userFromDb.LastLoginDate = DateTime.Now;
             }
-            return base.saveEntity(userFromDb);
+            return base.basePersistEntity(userFromDb);
         }
 
     }

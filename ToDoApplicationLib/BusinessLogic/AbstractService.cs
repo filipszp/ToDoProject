@@ -10,7 +10,7 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public abstract class AbstractService<T> : IAbstractService<T> where T : class
     {
-        public ICollection<T> getAll(string sortField = "", SortOrder order = SortOrder.Ascending)
+        public ICollection<T> baseGetAll(string sortField = "", SortOrder order = SortOrder.Ascending)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -27,7 +27,7 @@ namespace ToDoApplicationLib.BusinessLogic
                 return list;
             }
         }
-        public T saveNewEntity(T entity)
+        public T baseSaveNewEntity(T entity)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -42,7 +42,7 @@ namespace ToDoApplicationLib.BusinessLogic
             }
         }
 
-        public T saveEntity(T entity)
+        public T basePersistEntity(T entity)
         {
             T persistEntity;
             Type entityType = entity.GetType();
@@ -62,7 +62,7 @@ namespace ToDoApplicationLib.BusinessLogic
             return persistEntity;
         }
 
-        public int deleteEntity(T entity)
+        public int baseDeleteEntity(T entity)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -74,7 +74,7 @@ namespace ToDoApplicationLib.BusinessLogic
                 }
             }
         }
-        public ICollection<T> findByNameField(string field, int userId = -1, string stringValue = "", int intValue = -1)
+        public ICollection<T> baseFindByNameField(string field, int userId = -1, string stringValue = "", int intValue = -1)
         {
             List<T> persistEntity = new List<T>();
             using (var session = NHibernateHelper.OpenSession())

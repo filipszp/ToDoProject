@@ -26,7 +26,7 @@ namespace TodoApplication.Config
 
         private void loadDataGrid()
         {
-            taskCategories = (List<TaskCategory>)taskCategoryService.getAll("CategoryName", System.Data.SqlClient.SortOrder.Ascending);
+            taskCategories = (List<TaskCategory>)taskCategoryService.baseGetAll("CategoryName", System.Data.SqlClient.SortOrder.Ascending);
             dataGridView1.DataSource = taskCategories;
             if (taskCategories.Count > 0)
                 currentTaskCategory = taskCategories[0];
@@ -40,13 +40,13 @@ namespace TodoApplication.Config
             {
                 if (currentTaskCategory.isNew)
                 {
-                    currentTaskCategory = taskCategoryService.createTaskCategory(mapCurrentTaskCategoryWithControls());
+                    currentTaskCategory = taskCategoryService.CreateTaskCategory(mapCurrentTaskCategoryWithControls());
                     currentTaskCategory.isNew = false;
                     txtDesc.Enabled = txtName.Enabled = false;
                 }
                 else
                 {
-                    currentTaskCategory = taskCategoryService.updateTaskCategory(mapCurrentTaskCategoryWithControls());
+                    currentTaskCategory = taskCategoryService.UpdateTaskCategory(mapCurrentTaskCategoryWithControls());
                 }
                 loadDataGrid();
                 loadCurrentTaskCategoryToControls();
@@ -127,7 +127,7 @@ namespace TodoApplication.Config
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (taskCategoryService.deleteTaskCategory(currentTaskCategory) == -1)
+            if (taskCategoryService.DeleteTaskCategory(currentTaskCategory) == -1)
                 MessageBox.Show("Nie można usunąć grupy zadań ponieważ istnieją przypisane zadania", "Błąd usuwania", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             else
                 MessageBox.Show("Usunięto grupę zadań", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

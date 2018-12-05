@@ -6,10 +6,10 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public interface IUserService
     {
-        List<String> getAllLogin();
-        User createUser(User user);
-        User login(User user);
-        User lastLoginTimeUpdate(User user);
+        List<String> GetAllLogin();
+        User CreateUser(User user);
+        User Login(User user);
+        User LastLoginTimeUpdate(User user);
 
     }
 }

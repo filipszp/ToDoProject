@@ -9,11 +9,11 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public interface ITaskCategoryService
     {
-        List<String> getAllCategoryName();
-        List<TaskCategory> getAll();
-        TaskCategory getCategoryByName(String categoryName);
-        TaskCategory createTaskCategory(TaskCategory user);
-        int deleteTaskCategory(TaskCategory taskCategory);
-        TaskCategory updateTaskCategory(TaskCategory taskCategory);
+        List<String> GetAllCategoryName();
+        List<TaskCategory> GetAll();
+        TaskCategory GetCategoryByName(String categoryName);
+        TaskCategory CreateTaskCategory(TaskCategory user);
+        int DeleteTaskCategory(TaskCategory taskCategory);
+        TaskCategory UpdateTaskCategory(TaskCategory taskCategory);
     }
 }

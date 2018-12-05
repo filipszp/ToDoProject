@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using ToDoApplicationLib;
 using ToDoApplicationLib.BusinessLogic;
 using ToDoApplicationLib.BusinessLogic.Impl;
 using ToDoApplicationLib.EntityModel;
@@ -20,17 +18,16 @@ namespace TodoApplication.LoginForms
             InitializeComponent();
             userService = new UserService();
             taskService = new TaskService();
-            
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            //USUNAC
-            //dbContext = new DbEntities();
-            //statusDataSource.Text = dbContext.Database.Connection.DataSource;
-            //statusServerVersion.Text = dbContext.Database.Connection.ServerVersion;
-            //statusState.Text = dbContext.Database.Connection.State.ToString();
-
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                //statusDataSource.Text = session.Connection.DataSource;
+                statusServerVersion.Text = "SQL SERVER CE " + session.Connection.ServerVersion;
+                statusState.Text = "Connection state: "+ session.Connection.State.ToString();
+            }
             tbPass.Text = "test";
             loginCombo.Text = "test";
         }
@@ -38,7 +35,7 @@ namespace TodoApplication.LoginForms
         private void loadLoginsToCombo()
         {
             loginCombo.Items.Clear();
-            var logins = userService.getAllLogin();
+            var logins = userService.GetAllLogin();
             if (logins.Count > 0)
             {
                 loginCombo.Items.AddRange(logins.ToArray());
@@ -57,14 +54,13 @@ namespace TodoApplication.LoginForms
 
         private void btbLogin_Click(object sender, EventArgs e)
         {
-            User loginUser = new User(loginCombo.Text,"", tbPass.Text);
-            loginUser = userService.login(loginUser);
+            User loginUser = new User(loginCombo.Text, "", tbPass.Text);
+            loginUser = userService.Login(loginUser);
             if (loginUser != null && loginUser.isLogged)
             {
                 //LOGOWANIE OK
-                this.mainUser = loginUser;
-                mainForm = new MainForm(this.mainUser, this);
-                //mainForm.WindowState = FormWindowState.Maximized;
+                mainUser = loginUser;
+                mainForm = new MainForm(mainUser, this);
                 mainForm.Show();
             }
             else

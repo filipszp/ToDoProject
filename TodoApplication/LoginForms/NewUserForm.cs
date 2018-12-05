@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using TodoApplicationLib.Utils;
 using ToDoApplicationLib.BusinessLogic;
 using ToDoApplicationLib.EntityModel;
 
@@ -31,7 +32,7 @@ namespace TodoApplication.LoginForms
         private void addNewUser()
         {
             User createdUser = new User(tbLogin.Text, tbName.Text, PasswordCrypto.Encrypt(tbPass.Text));
-            createdUser = userService.createUser(createdUser);
+            createdUser = userService.CreateUser(createdUser);
             if (createdUser!=null && createdUser.Id > 0)
             {
                 MessageBox.Show("Utworzono użytkownika " + tbLogin.Text, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

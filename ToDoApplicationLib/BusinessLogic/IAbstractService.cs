@@ -6,10 +6,10 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public interface IAbstractService<T>
     {
-        T saveNewEntity(T entity);
-        T saveEntity(T entity);
-        int deleteEntity(T entity);
-        ICollection<T> findByNameField(string field, int userId = -1, string stringValue = "", int intValue = -1);
-        ICollection<T> getAll(string sortField = "", SortOrder order = SortOrder.Ascending);
+        T baseSaveNewEntity(T entity);
+        T basePersistEntity(T entity);
+        int baseDeleteEntity(T entity);
+        ICollection<T> baseFindByNameField(string field, int userId = -1, string stringValue = "", int intValue = -1);
+        ICollection<T> baseGetAll(string sortField = "", SortOrder order = SortOrder.Ascending);
     }
 }

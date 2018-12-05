@@ -88,7 +88,6 @@
     <Compile Include="LoginForms\NewUserForm.Designer.cs">
       <DependentUpon>NewUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForms\PasswordCrypto.cs" />
     <Compile Include="MainForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

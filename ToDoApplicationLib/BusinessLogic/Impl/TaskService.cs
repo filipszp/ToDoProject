@@ -13,7 +13,7 @@ namespace ToDoApplicationLib.BusinessLogic.Impl
 
         public List<Task> GetAll()
         {
-            var list = base.getAll();
+            var list = base.baseGetAll();
             return (List<Task>)list;
         }
 
@@ -47,7 +47,7 @@ namespace ToDoApplicationLib.BusinessLogic.Impl
 
         public Task UpdateTask(Task task)
         {
-            return base.saveEntity(task);
+            return base.basePersistEntity(task);
         }
 
         public List<Task> SearchTasks(TaskSearchCriteria searchCriteria, int userId)
@@ -75,7 +75,7 @@ namespace ToDoApplicationLib.BusinessLogic.Impl
 
                 if (crTaskName != null && crDateBetween != null && crTaskCategory != null)
                 {
-                    crAllOr = Restrictions.Disjunction()
+                    crAllOr = Restrictions.Conjunction()
                         .Add(crTaskName)
                         .Add(crTaskCategory)
                         .Add(crDateBetween);
@@ -92,30 +92,28 @@ namespace ToDoApplicationLib.BusinessLogic.Impl
                 }
                 if (crTaskName != null && crTaskCategory == null && crDateBetween != null)
                 {
-                    crAllOr = Restrictions.Disjunction()
+                    crAllOr = Restrictions.Conjunction()
                        .Add(crTaskName)
                        .Add(crDateBetween);
                 }
                 if (crTaskName == null && crTaskCategory != null && crDateBetween != null)
                 {
-                    crAllOr = Restrictions.Disjunction()
+                    crAllOr = Restrictions.Conjunction()
                        .Add(crTaskCategory)
                        .Add(crDateBetween);
                 }
                 if (crTaskName == null && crTaskCategory == null && crDateBetween != null)
                 {
-                    crAllOr = Restrictions.Disjunction()
+                    crAllOr = Restrictions.Conjunction()
                        .Add(crDateBetween);
                 }
                 if (crTaskName == null && crTaskCategory != null && crDateBetween == null)
                 {
-                    crAllOr = Restrictions.Disjunction()
+                    crAllOr = Restrictions.Conjunction()
                        .Add(crTaskCategory);
                 }
 
                 var query = session.CreateCriteria<Task>("t");
-                    //.Fetch(SelectMode.Fetch, "t.TaskCategory","c")
-                    //.Fetch(SelectMode.Fetch, "t.User","u");
 
                 query.CreateCriteria("t.TaskCategory", "c");
                 query.CreateCriteria("t.User", "u");
@@ -128,10 +126,14 @@ namespace ToDoApplicationLib.BusinessLogic.Impl
                     crEndAll = crUserId;
                 query.Add(crEndAll);
 
-                searchTasks = query.List<Task>().ToList<Task>();
+                searchTasks = query.List<Task>().OrderByDescending(x => x.TaskDate).ToList<Task>();
             }
             return searchTasks;
         }
 
+        public int DeleteTask(Task task)
+        {
+            return base.baseDeleteEntity(task);
+        }
     }
 }

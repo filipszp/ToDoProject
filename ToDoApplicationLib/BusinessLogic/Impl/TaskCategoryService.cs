@@ -7,7 +7,7 @@ namespace ToDoApplicationLib.BusinessLogic
 {
     public class TaskCategoryService : AbstractService<TaskCategory>, ITaskCategoryService
     {
-        public List<String> getAllCategoryName()
+        public List<String> GetAllCategoryName()
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -15,17 +15,17 @@ namespace ToDoApplicationLib.BusinessLogic
             }
         }
 
-        public TaskCategory createTaskCategory(TaskCategory category)
+        public TaskCategory CreateTaskCategory(TaskCategory category)
         {
-            return base.saveNewEntity(category);
+            return base.baseSaveNewEntity(category);
         }
 
-        public TaskCategory getCategoryByName(String categoryName)
+        public TaskCategory GetCategoryByName(String categoryName)
         {
-            return base.findByNameField("CategoryName", -1, categoryName).FirstOrDefault<TaskCategory>();
+            return base.baseFindByNameField("CategoryName", -1, categoryName).FirstOrDefault<TaskCategory>();
         }
 
-        public int deleteTaskCategory(TaskCategory taskCategory)
+        public int DeleteTaskCategory(TaskCategory taskCategory)
         {
             var refTasks = new List<Task>();
             using (var session = NHibernateHelper.OpenSession())
@@ -40,18 +40,18 @@ namespace ToDoApplicationLib.BusinessLogic
             }
             else
             {
-                return base.deleteEntity(taskCategory);
+                return base.baseDeleteEntity(taskCategory);
             }
         }
 
-        public TaskCategory updateTaskCategory(TaskCategory taskCategory)
+        public TaskCategory UpdateTaskCategory(TaskCategory taskCategory)
         {
-            return base.saveEntity(taskCategory);
+            return base.basePersistEntity(taskCategory);
         }
 
-        public List<TaskCategory> getAll()
+        public List<TaskCategory> GetAll()
         {
-            return (List<TaskCategory>)base.getAll();
+            return (List<TaskCategory>)base.baseGetAll();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using TodoApplication.Config;
 using TodoApplication.LoginForms;
@@ -44,13 +44,13 @@ namespace TodoApplication
             if (loggedUser.isLogged)
             {
                 toolStripStatusUserLbl.Text = "Zalogowany użytkownik: " + loggedUser.FullName + "(" + loggedUser.Login + ")";
-                toolStripStatusLastLogin.Text = loggedUser.LastLoginDate.HasValue ? "        Ostatnie logowanie " + loggedUser.LastLoginDate.ToString() : String.Empty;
-                loggedUser = userService.lastLoginTimeUpdate(loggedUser);
+                toolStripStatusLastLogin.Text = loggedUser.LastLoginDate.HasValue ? "                            Ostatnie logowanie: " + loggedUser.LastLoginDate.ToString() : String.Empty;
+                loggedUser = userService.LastLoginTimeUpdate(loggedUser);
                 dataGridView1.AutoGenerateColumns = false;
 
                 loadDataGridAndCombos(true, true);
                 editableTaskField(false);
-                btnEditTask.Enabled = true;
+                btnEditTask.Enabled = btnNewTask.Enabled = true;
                 loginForm.Hide();
             }
         }
@@ -70,7 +70,7 @@ namespace TodoApplication
 
         private void reloadCategoryCombo()
         {
-            taskCategoryNamesList = taskCategoryService.getAllCategoryName();
+            taskCategoryNamesList = taskCategoryService.GetAllCategoryName();
             comboTaskCategory.Items.Clear();
             comboTaskCategory.Items.AddRange(taskCategoryNamesList.ToArray());
             if (currentTask != null && currentTask.TaskCategory != null)
@@ -100,6 +100,7 @@ namespace TodoApplication
             = btnNewTask.Enabled
             = comboTaskCategory.Enabled
             = btnCancelEdit.Enabled
+            = checkBoxCompleted.Checked
             = editable;
 
             txtTaskName.ReadOnly = txtDesc.ReadOnly = !editable;
@@ -107,13 +108,12 @@ namespace TodoApplication
             comboTaskCategory.SelectedItem = currentTask.TaskCategory.CategoryName;
         }
 
-
-        private void checkBoxCompleted_CheckedChanged(object sender, EventArgs e)
+        private void btnReload_Click(object sender, EventArgs e)
         {
-
+            searchExecute();
         }
 
-        private void btnReload_Click(object sender, EventArgs e)
+        private void searchExecute()
         {
             TaskSearchCriteria criteria = new TaskSearchCriteria();
             if (!String.IsNullOrEmpty(filtrName.Text))
@@ -130,8 +130,6 @@ namespace TodoApplication
             loadCurrentTaskToControls();
         }
 
-
-
         private void btnEditTask_Click(object sender, EventArgs e)
         {
             editableTaskField(true);
@@ -147,7 +145,7 @@ namespace TodoApplication
                 if (currentTask.isNew)
                 {
                     loadCurrentTaskFromControls();
-                    currentTask = taskService.saveNewEntity(currentTask);
+                    currentTask = taskService.baseSaveNewEntity(currentTask);
                     MessageBox.Show("Zadanie " + currentTask.TaskName + " zostało dodane!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     currentTask.isNew = false;
                     editableTaskField(false);
@@ -185,7 +183,7 @@ namespace TodoApplication
 
             currentTask.TaskDate = taskDateTime;
 
-            var cat = taskCategoryService.getCategoryByName(comboTaskCategory.Text);
+            var cat = taskCategoryService.GetCategoryByName(comboTaskCategory.Text);
             currentTask.TaskCategory = cat;
 
             currentTask.Description = txtDesc.Text.Trim();
@@ -217,7 +215,7 @@ namespace TodoApplication
         private void comboTaskCategory_MouseEnter(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(comboTaskCategory.Text))
-                toolTipCategory.SetToolTip(comboTaskCategory, taskCategoryService.getCategoryByName(comboTaskCategory.Text).Description);
+                toolTipCategory.SetToolTip(comboTaskCategory, taskCategoryService.GetCategoryByName(comboTaskCategory.Text).Description);
         }
 
         private void noweZadanieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,6 +223,7 @@ namespace TodoApplication
             clearControls();
             btnEditTask.Enabled = btnNewTask.Enabled = false;
             currentTask.isNew = true;
+            checkBoxCompleted.Checked = false;
             reloadCategoryCombo();
             txtTaskName.Focus();
 
@@ -239,7 +238,7 @@ namespace TodoApplication
             if (currentTask.Completed == 1) { checkBoxCompleted.CheckState = CheckState.Checked; }
             else { checkBoxCompleted.CheckState = CheckState.Unchecked; }
 
-            var cat = taskCategoryService.getCategoryByName(comboTaskCategory.Text);
+            var cat = taskCategoryService.GetCategoryByName(comboTaskCategory.Text);
             currentTask.TaskCategory = cat;
             btnEditTask.Enabled = false;
         }
@@ -287,13 +286,13 @@ namespace TodoApplication
             if (currentTask != null && currentTask.User != null)
             {
                 if (checkBoxCompletedFilter.CheckState == CheckState.Checked && checkBoxNotCompleted.CheckState == CheckState.Unchecked)
-                    dataGridView1.DataSource = taskService.findByNameField("Completed", currentTask.User.Id, "", 1);
+                    dataGridView1.DataSource = taskService.baseFindByNameField("Completed", currentTask.User.Id, "", 1);
 
                 if (checkBoxCompletedFilter.CheckState == CheckState.Checked && checkBoxNotCompleted.CheckState == CheckState.Checked)
                     dataGridView1.DataSource = taskService.GetTasksByUserId(currentTask.User.Id);
 
                 if (checkBoxCompletedFilter.CheckState == CheckState.Unchecked && checkBoxNotCompleted.CheckState == CheckState.Checked)
-                    dataGridView1.DataSource = taskService.findByNameField("Completed", currentTask.User.Id, "", 0);
+                    dataGridView1.DataSource = taskService.baseFindByNameField("Completed", currentTask.User.Id, "", 0);
 
                 if (checkBoxCompletedFilter.CheckState == CheckState.Unchecked && checkBoxNotCompleted.CheckState == CheckState.Unchecked)
                     dataGridView1.DataSource = new List<Task>();
@@ -308,13 +307,13 @@ namespace TodoApplication
             if (currentTask != null && currentTask.User != null)
             {
                 if (checkBoxCompletedFilter.CheckState == CheckState.Checked && checkBoxNotCompleted.CheckState == CheckState.Unchecked)
-                    dataGridView1.DataSource = taskService.findByNameField("Completed", currentTask.User.Id, "", 1);
+                    dataGridView1.DataSource = taskService.baseFindByNameField("Completed", currentTask.User.Id, "", 1);
 
                 if (checkBoxCompletedFilter.CheckState == CheckState.Checked && checkBoxNotCompleted.CheckState == CheckState.Checked)
                     dataGridView1.DataSource = taskService.GetTasksByUserId(currentTask.User.Id);
 
                 if (checkBoxCompletedFilter.CheckState == CheckState.Unchecked && checkBoxNotCompleted.CheckState == CheckState.Checked)
-                    dataGridView1.DataSource = taskService.findByNameField("Completed", currentTask.User.Id, "", 0);
+                    dataGridView1.DataSource = taskService.baseFindByNameField("Completed", currentTask.User.Id, "", 0);
 
                 if (checkBoxCompletedFilter.CheckState == CheckState.Unchecked && checkBoxNotCompleted.CheckState == CheckState.Unchecked)
                     dataGridView1.DataSource = new List<Task>();
@@ -353,6 +352,50 @@ namespace TodoApplication
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void filtrName_TextChanged(object sender, EventArgs e)
+        {
+            searchExecute();
+        }
+
+        private void filterDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            searchExecute();
+        }
+
+        private void filterDateTo_ValueChanged(object sender, EventArgs e)
+        {
+            searchExecute();
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (Convert.ToInt32(row.Cells[1].Value) == 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                }
+        }
+
+        private void wyjścieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnDeleteTask_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Czy napewno usunąć wybrane zadanie?", "Usuń zadanie", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int res = taskService.DeleteTask(currentTask);
+                loadDataGridAndCombos(true, true);
+            }
         }
     }
 }
