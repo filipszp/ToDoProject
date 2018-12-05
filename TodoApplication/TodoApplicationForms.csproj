@@ -147,9 +147,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\00_tables.sql" />
-    <Content Include="DB\db.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
